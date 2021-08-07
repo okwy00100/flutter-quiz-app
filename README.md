@@ -1,6 +1,6 @@
-# flutter_quiz_app
+# flutter-quiz-app
 
-A new Flutter project.
+A new Flutter project. This is a simple quiz application built using Flutter Framework
 
 ## Getting Started
 
