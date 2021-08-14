@@ -5,18 +5,20 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-@override
+  @override
   State<StatefulWidget> createState() {
-    return MyAppPage();
+    return _MyAppPage();
   }
 }
 
-class MyAppPage extends State<MyApp>{
-  var questionIndex = 0;
+class _MyAppPage extends State<MyApp> {
+  var _questionIndex = 0;
 
-  void answerQuestion() {
-    questionIndex++;
-    print('Answered question $questionIndex');
+  void _answerQuestion() {
+    setState(() {
+      _questionIndex++;
+    });
+    print('Answered question $_questionIndex');
   }
 
   // void answerQuestion2() {
@@ -32,6 +34,7 @@ class MyAppPage extends State<MyApp>{
     var questions = [
       'What is your name?',
       'What\'s your favorite color?',
+      'What\'s your favorite pet?',
     ];
     return MaterialApp(
       home: Scaffold(
@@ -40,19 +43,21 @@ class MyAppPage extends State<MyApp>{
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Text(
+              questions[_questionIndex],
+            ),
             // Text('Hello'),
             ElevatedButton(
               child: Text('Button 1'),
-              onPressed: () => answerQuestion(),
+              onPressed: () => _answerQuestion(),
             ),
             ElevatedButton(
               child: Text('Button 2'),
-              onPressed: () => answerQuestion(),
+              onPressed: () => _answerQuestion(),
             ),
             ElevatedButton(
               child: Text('Button 3'),
-              onPressed: answerQuestion,
+              onPressed: _answerQuestion,
             ),
           ],
         ),
