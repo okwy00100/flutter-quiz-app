@@ -23,20 +23,22 @@ class _MyAppPage extends State<MyApp> {
     print('Answered question $_questionIndex');
   }
 
-  // void answerQuestion2() {
-  //   print('Pressed Button 2');
-  // }
-
-  // void answerQuestion3() {
-  //   print('Pressed Button 3');
-  // }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What is your name?',
-      'What\'s your favorite color?',
-      'What\'s your favorite pet?',
+      {
+        'questionText': 'What\'s your favorite food?',
+        'answers': ['Pizza', 'Shawarma', 'Pasta', 'Salad'],
+      },
+      {
+        'questionText': 'What\'s your favorite color?',
+        'answers': ['Blue', 'Red', 'Green', 'Black'],
+      },
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['Dog', 'Cat', 'Echidna', 'Unicorn'],
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -46,12 +48,11 @@ class _MyAppPage extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              questions[_questionIndex],
+              questions[_questionIndex]['questionText'] as String,
             ),
-            // Text('Hello'),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
-            Answer(_answerQuestion),
+            ...(questions[_questionIndex]['answers'] as List<String>).map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
