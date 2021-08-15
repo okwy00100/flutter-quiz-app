@@ -38,10 +38,28 @@ class _MyAppPage extends State<MyApp> {
     {
       'questionText': 'What\'s your favorite animal?',
       'answers': [
-        {'text': 'Dog', 'score': 30},
+        {'text': 'Dog', 'score': 100},
         {'text': 'Cat', 'score': 20},
         {'text': 'Echidna', 'score': 50},
-        {'text': 'Unicorn', 'score': 100}
+        {'text': 'Unicorn', 'score': 70}
+      ]
+    },
+    {
+      'questionText': 'What\'s your favorite pastime?',
+      'answers': [
+        {'text': 'Reading', 'score': 50},
+        {'text': 'Video Games', 'score': 100},
+        {'text': 'Outdoor Sports', 'score': 70},
+        {'text': 'Working', 'score': 10}
+      ]
+    },
+    {
+      'questionText': 'What\'s your favorite music genre?',
+      'answers': [
+        {'text': 'Rock', 'score': 70},
+        {'text': 'Pop', 'score': 20},
+        {'text': 'Alternative', 'score': 100},
+        {'text': 'Jazz', 'score': 50}
       ]
     },
   ];
@@ -49,7 +67,7 @@ class _MyAppPage extends State<MyApp> {
   void _answerQuestion(int score) {
     setState(() {
       _questionIndex++;
-       _totalScore += score;
+      _totalScore += score;
     });
     print('Answered question $_questionIndex');
     if (_questionIndex < _questions.length) {
@@ -58,6 +76,15 @@ class _MyAppPage extends State<MyApp> {
       print('No more questions');
     }
     print('Current score is $_totalScore');
+  }
+
+  void _resetQuiz(){
+    setState(() {
+      _questionIndex =0;
+      _totalScore = 0;
+    });
+
+    print('Quiz reset! Current score is $_totalScore');
   }
 
   @override
@@ -73,7 +100,7 @@ class _MyAppPage extends State<MyApp> {
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }
