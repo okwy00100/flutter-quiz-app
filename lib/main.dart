@@ -15,24 +15,41 @@ class MyApp extends StatefulWidget {
 
 class _MyAppPage extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
   final _questions = const [
     {
       'questionText': 'What\'s your favorite food?',
-      'answers': ['Pizza', 'Shawarma', 'Pasta', 'Salad'],
+      'answers': [
+        {'text': 'Pizza', 'score': 30},
+        {'text': 'Shawarma', 'score': 20},
+        {'text': 'Pasta', 'score': 50},
+        {'text': 'Salad', 'score': 100}
+      ],
     },
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Blue', 'Red', 'Green', 'Black'],
+      'answers': [
+        {'text': 'Blue', 'score': 30},
+        {'text': 'Red', 'score': 20},
+        {'text': 'Green', 'score': 50},
+        {'text': 'Black', 'score': 100}
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Dog', 'Cat', 'Echidna', 'Unicorn'],
+      'answers': [
+        {'text': 'Dog', 'score': 30},
+        {'text': 'Cat', 'score': 20},
+        {'text': 'Echidna', 'score': 50},
+        {'text': 'Unicorn', 'score': 100}
+      ]
     },
   ];
 
-  void _answerQuestion() {
+  void _answerQuestion(int score) {
     setState(() {
       _questionIndex++;
+       _totalScore += score;
     });
     print('Answered question $_questionIndex');
     if (_questionIndex < _questions.length) {
@@ -40,6 +57,7 @@ class _MyAppPage extends State<MyApp> {
     } else {
       print('No more questions');
     }
+    print('Current score is $_totalScore');
   }
 
   @override
